@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Green-API Autotests Report</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+
+        .header .subtitle {
+            color: #7f8c8d;
+            font-size: 1.2em;
+        }
+
+        .summary-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .card.success {
+            border-left: 5px solid #27ae60;
+        }
+
+        .card.warning {
+            border-left: 5px solid #f39c12;
+        }
+
+        .card.info {
+            border-left: 5px solid #3498db;
+        }
+
+        .card h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat .number {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+
+        .stat .label {
+            font-size: 0.9em;
+            color: #7f8c8d;
+        }
+
+        .success .number { color: #27ae60; }
+        .warning .number { color: #f39c12; }
+        .info .number { color: #3498db; }
+
+        .test-results {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .test-results h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .test-category {
+            margin-bottom: 25px;
+        }
+
+        .test-category h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ecf0f1;
+        }
+
+        .test-list {
+            list-style: none;
+        }
+
+        .test-item {
+            padding: 12px 15px;
+            margin-bottom: 8px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .test-item.passed {
+            border-left: 4px solid #27ae60;
+        }
+
+        .test-item.failed {
+            border-left: 4px solid #e74c3c;
+        }
+
+        .test-item.skipped {
+            border-left: 4px solid #f39c12;
+        }
+
+        .status {
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .status.passed {
+            background: #d5f4e6;
+            color: #27ae60;
+        }
+
+        .status.failed {
+            background: #fdeaea;
+            color: #e74c3c;
+        }
+
+        .status.skipped {
+            background: #fef5e7;
+            color: #f39c12;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: white;
+            padding: 20px;
+        }
+
+        .tech-stack {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+
+        .tech-badge {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .summary-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 Green-API Autotests Report</h1>
+            <p class="subtitle">Тестовое задание на должность QA Engineer - Агапов Е.Н.</p>
+        </div>
+
+        <div class="summary-cards">
+            <div class="card success">
+                <h3>✅ API Тесты</h3>
+                <p>Автотесты для методов Green-API: отправка и получение сообщений WhatsApp</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="number">9</span>
+                        <span class="label">Тестов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">100%</span>
+                        <span class="label">Успех</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">3</span>
+                        <span class="label">Метода</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card warning">
+                <h3>⚠ Selenium Тесты</h3>
+                <p>UI тесты для WhatsApp Web (требуют ручной аутентификации)</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="number">3</span>
+                        <span class="label">Тестов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">QR</span>
+                        <span class="label">Код нужен</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">Опц.</span>
+                        <span class="label">Обязательность</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card info">
+                <h3>📊 Общая статистика</h3>
+                <p>Результаты выполнения тестового задания</p>
+                <div class="stats">
+                    <div class="stat">
+                        <span class="number">12</span>
+                        <span class="label">Всего тестов</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">75%</span>
+                        <span class="label">Автоматизация</span>
+                    </div>
+                    <div class="stat">
+                        <span class="number">5 дн.</span>
+                        <span class="label">Срок</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="test-results">
+            <h2>📋 Детальные результаты тестирования</h2>
+
+            <div class="test-category">
+                <h3>🔧 API Тесты (Jest + TypeScript)</h3>
+                <ul class="test-list">
+                    <li class="test-item passed">
+                        <span>sendMessage - успешная отправка (status 200)</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>sendMessage - проверка обязательных полей (status 400)</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>sendMessage - отсутствие chatId</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>sendMessage - отсутствие message</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>getChatHistory - получение истории (status 200)</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>getChatHistory - неверный chatId (status 400)</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>getChatHistory - пустая история чата</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>getStateInstance - авторизованный инстанс</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>getStateInstance - неавторизованный инстанс</span>
+                        <span class="status passed">Passed</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="test-category">
+                <h3>🌐 Selenium UI Тесты</h3>
+                <ul class="test-list">
+                    <li class="test-item skipped">
+                        <span>WhatsApp Web - загрузка страницы</span>
+                        <span class="status skipped">Skipped</span>
+                    </li>
+                    <li class="test-item skipped">
+                        <span>WhatsApp Web - проверка элементов интерфейса</span>
+                        <span class="status skipped">Skipped</span>
+                    </li>
+                    <li class="test-item skipped">
+                        <span>WhatsApp Web - интеграция с API</span>
+                        <span class="status skipped">Skipped</span>
+                    </li>
+                </ul>
+                <p style="color: #f39c12; margin-top: 10px; font-style: italic;">
+                    ⚠ Selenium тесты требуют ручного сканирования QR-кода для аутентификации в WhatsApp Web
+                </p>
+            </div>
+
+            <div class="test-category">
+                <h3>✅ Выполненные требования</h3>
+                <ul class="test-list">
+                    <li class="test-item passed">
+                        <span>Разработаны автотесты для отправки и получения сообщений</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Использован сервис GREEN-API</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Реализована отправка текстовых сообщений</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Реализовано получение истории чата</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Использована технология Jest + TypeScript</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Проверка статус кодов 200 и 400</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Проверка обязательных полей</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Проверка авторизации инстанса</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                    <li class="test-item passed">
+                        <span>Настройка конфигурации через .env</span>
+                        <span class="status passed">Done</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Тестовое задание выполнено с использованием современных технологий тестирования</p>
+            <div class="tech-stack">
+                <span class="tech-badge">Jest</span>
+                <span class="tech-badge">TypeScript</span>
+                <span class="tech-badge">Selenium</span>
+                <span class="tech-badge">Green-API</span>
+                <span class="tech-badge">Node.js</span>
+                <span class="tech-badge">Axios</span>
+            </div>
+            <p style="margin-top: 20px;">© 2025 QA Engineer Test Assignment</p>
+        </div>
+    </div>
+</body>
+</html>
