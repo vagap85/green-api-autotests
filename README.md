@@ -38,29 +38,28 @@
 
 
 
-green-api-autotests/
-├── src/                    # Исходный код
-│   ├── api/               # API методы Green-API
-│   │   ├── sendMessage.ts
-│   │   ├── getChatHistory.ts
-│   │   └── getStateInstance.ts
-│   ├── config/            # Конфигурация
-│   │   └── config.ts
-│   └── types/             # TypeScript типы
-│       └── types.ts
-├── tests/                 # Тесты
-│   ├── unit/              # Юнит-тесты API
-│   │   ├── sendMessage.test.ts
-│   │   ├── getChatHistory.test.ts
-│   │   └── getStateInstance.test.ts
-│   └── selenium/          # UI тесты (опционально)
-│       ├── basic.test.ts
-│       ├── smoke.test.ts
-│       └── greenapi.test.ts
-├── package.json
-├── tsconfig.json
-├── jest.config.js
-└── README.md
+green-api-autotests/<br>
+├── src/                    # Исходный код<br>
+│   ├── api/               # API методы Green-API<br>
+│   │   ├── sendMessage.ts<br>
+│   │   ├── getChatHistory.ts<br>
+│   │   └── getStateInstance.ts<br>
+│   ├── config/            # Конфигурация<br>
+│   │   └── config.ts<br>
+│   └── types/             # TypeScript типы<br>
+│       └── types.ts<br>
+├── tests/                 # Тесты<br>
+│   ├── sendMessage.test.ts<br>
+│   ├── getChatHistory.test.ts<br>
+│   ├── getStateInstance.test.ts<br>
+│   └── selenium/          # UI тесты (опционально)<br>
+│       ├── basic.test.ts<br>
+│       ├── smoke.test.ts<br>
+│       └── greenapi.test.ts<br>
+├── package.json<br>
+├── tsconfig.json<br>
+├── jest.config.js<br>
+└── README.md<br>
 
 
 
@@ -68,7 +67,7 @@ green-api-autotests/
 
 ### 1. Клонирование и установка
 bash
-git clone https://github.com/your-username/green-api-autotests.git
+git clone https://github.com/vagap85/green-api-autotests.git
 cd green-api-autotests
 npm install
 
@@ -78,29 +77,28 @@ npm install
 Создайте файл .env в корне проекта:
 
 env
-# GREEN-API Configuration
-ID_INSTANCE=your_id_instance_here
-API_TOKEN_INSTANCE=your_api_token_instance_here
-BASE_URL=https://7103.api.green-api.com
-CHAT_ID=79991234567@c.us
-
-# Selenium Configuration (опционально)
+# GREEN-API 
+ID_INSTANCE=your_id_instance_here<br>
+API_TOKEN_INSTANCE=your_api_token_instance_here<br>
+BASE_URL=https://7103.api.green-api.com<br>
+CHAT_ID=79991234567@c.us<br>
+#Selenium (опционально)
 HEADLESS=true
 
 
 3. Запуск тестов
 
 bash
-# Все тесты
+#Все тесты
 npm test
 
-# Только API тесты
+#Только API тесты
 npm run test:api
 
-# Только Selenium тесты (требуют QR-код)
+#Только Selenium тесты (требуют QR-код)
 npm run test:selenium
 
-# Selenium с видимым браузером
+#Selenium с видимым браузером
 npm run test:selenium:headed
 
 
@@ -143,11 +141,11 @@ npm run test:api
 
 Покрытие тестами:
 
-· ✅ Отправка сообщений (статусы 200, 400)
-· ✅ Получение истории чата
-· ✅ Проверка авторизации инстанса
-· ✅ Валидация обязательных полей
-· ✅ Обработка ошибок
+· ✅ Отправка сообщений (статусы 200, 400)<br>
+· ✅ Получение истории чата<br>
+· ✅ Проверка авторизации инстанса<br>
+· ✅ Валидация обязательных полей<br>
+· ✅ Обработка ошибок<br>
 
 Selenium тесты (опционально)
 
@@ -159,37 +157,35 @@ npm run test:selenium
 
 📊 Результаты тестирования
 
-Категория Тестов Пройдено Статус
-API тесты 9 9 ✅ 100%
-Selenium тесты 3 0* ⚠ Требует аутентификации
-
+API тесты 9 из 9 ✅ <br>
+Selenium тесты 0 из 3*<br>
 *Selenium тесты пропускаются из-за необходимости QR-кода аутентификации
 
 🔧 Настройка Green-API
 
-1. Зарегистрируйтесь на Green-API
-2. Создайте инстанс в личном кабинете
-3. Получите idInstance и apiTokenInstance
-4. Настройте в файле .env
+1. Зарегистрируйтесь на Green-API<br>
+2. Создайте инстанс в личном кабинете<br>
+3. Получите idInstance и apiTokenInstance<br>
+4. Настройте в файле .env<br>
 
 🛠 Технологии
 
-· Jest - Фреймворк для тестирования
-· TypeScript - Статическая типизация
-· Selenium WebDriver - UI автоматизация
-· Axios - HTTP клиент
-· Green-API - WhatsApp API
+· Jest - Фреймворк для тестирования<br>
+· TypeScript - Статическая типизация<br>
+· Selenium WebDriver - UI автоматизация<br>
+· Axios - HTTP клиент<br>
+· Green-API - WhatsApp API<br>
 
-## 📝 Скрипты package.json
+📝 Скрипты package.json
 
-```json
+json
 {
   "scripts": {
     "test": "jest",
     "test:api": "jest tests/sendMessage.test.ts tests/getChatHistory.test.ts tests/getStateInstance.test.ts",
     "test:selenium": "jest tests/selenium",
     "test:selenium:headed": "set HEADLESS=false&& jest tests/selenium"
-  }
+  }
 }
 
 
@@ -207,20 +203,14 @@ bash
 npm run build
 
 
-Запуск линтера
-
-bash
-npm run lint
-
-
 📄 Лицензия
 
 MIT License - смотрите файл LICENSE для деталей.
 
 👤 Автор
 
-Ваше Имя
+Evgeny Agapov
 
-· Email: vagap85@gmail.com.com
+· Email: vagap85@gmail.com<br>
 · GitHub: @vagap85
 
