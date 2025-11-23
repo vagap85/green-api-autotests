@@ -1,0 +1,9 @@
+node_modules/
+dist/
+coverage/
+.env
+*.log
+error-*.png
+selenium-debug/
+*.tmp
+.DS_Store
